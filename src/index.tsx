@@ -1,12 +1,9 @@
+import 'react-app-polyfill/stable'
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import './style.scss'
+import {App} from '@Main/components';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+ReactDOM.render(<App />, document.getElementById('root')
 );
 
