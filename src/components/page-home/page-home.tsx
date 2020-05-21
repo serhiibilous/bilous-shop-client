@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { Container, Alert, Button, Carousel } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { NoImage } from '@Main/components'
+import { Product } from '@Main/types'
+import { ProductService } from '@Main/services'
 import {
   Content,
   LogoContainer,
@@ -13,10 +15,8 @@ import {
   CarouselControlNext,
   CarouselControlPrev,
 } from './page-home-components'
-import { Product } from '@Main/types'
-import { ProductService } from '@Main/services'
 
-function PageHome() {
+export default function PageHome() {
   const [latestProducts, setLatestProducts] = useState<Product[]>([])
   const productService = new ProductService()
 
@@ -83,5 +83,3 @@ function PageHome() {
     </Content>
   )
 }
-
-export default PageHome
