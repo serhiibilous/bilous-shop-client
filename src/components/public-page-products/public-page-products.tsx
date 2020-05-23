@@ -9,36 +9,40 @@ import { NoImage } from '@Main/components'
 import { AppState } from '@Main/store'
 import { Product as ProductType } from '@Main/types'
 import { ProductService, UserService } from '@Main/services'
+import { useTranslation } from 'react-i18next'
 
 export default function PublicPageProducts() {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const { token, loggedIn } = useSelector((state: AppState) => state.system)
   const [products, setProducts] = React.useState<ProductType[]>([])
   const productService = new ProductService()
   const userService = new UserService(token!)
 
-  function handleAddProductToCart(e: any, id: string) {
+  function handleAddProductToCart(e: any, id: string, name: string) {
     e.preventDefault()
     userService
       .updateUserCart({ action: 'ADD' }, id)
-      .then(data => {
+      .then((data) => {
         if (data.products) {
           dispatch(updateUserCart(data.products))
-          dispatch(addNotification(buildNotification('success', 'Продукт додано!', 'Продукт добавлено в корзину.')))
+          dispatch(
+            addNotification(buildNotification('success', t('ProductsPage.Notification.ProductAdded.Title'), name)),
+          )
         }
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
   }
 
   React.useEffect(() => {
     productService
       .getProducts('/products')
-      .then(data => {
+      .then((data) => {
         if (data.products) {
           setProducts(data.products)
         }
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
   }, [])
 
   return (
@@ -56,8 +60,11 @@ export default function PublicPageProducts() {
                       <Card.Title title={name}>{name}</Card.Title>
                       <Card.Text>{description}</Card.Text>
                       {loggedIn && (
-                        <Button variant="primary" className="w-100" onClick={(e: any) => handleAddProductToCart(e, id)}>
-                          Додати до кошика
+                        <Button
+                          variant="primary"
+                          className="w-100"
+                          onClick={(e: any) => handleAddProductToCart(e, id, name)}>
+                          {t('ProductsPage.AddToCardButton')}
                         </Button>
                       )}
                     </Card.Body>

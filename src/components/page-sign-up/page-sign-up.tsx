@@ -6,8 +6,10 @@ import { updateUser, loginUser } from '@Main/store/system/actions'
 import { CompanyList } from '@Main/constants'
 import { buildNotification } from '@Main/utils'
 import { UserService } from '@Main/services'
+import { useTranslation } from 'react-i18next'
 
 export default function PageSignUp() {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const userService = new UserService()
   const [userData, setUserData] = React.useState({ name: '', email: '', company: 'RIA', password: '' })
@@ -47,10 +49,10 @@ export default function PageSignUp() {
       <Row className="justify-content-center">
         <Col sm={6} md={6} lg={4} xl={4}>
           <br />
-          <h1 className="text-center">Реєстрація</h1>
+          <h1 className="text-center">{t('SignUpPage.Title')}</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="userName">
-              <Form.Label>Ім'я:</Form.Label>
+              <Form.Label>{t('SignUpPage.Form.Name')}:</Form.Label>
               <Form.Control
                 required={true}
                 value={userData.name}
@@ -58,11 +60,11 @@ export default function PageSignUp() {
                 data-testid="name"
                 type="text"
                 onChange={handleChange}
-                placeholder="Ім'я"
+                placeholder={t('SignUpPage.Form.Name')}
               />
             </Form.Group>
             <Form.Group controlId="userEmail">
-              <Form.Label>Email:</Form.Label>
+              <Form.Label>{t('SignUpPage.Form.Email')}:</Form.Label>
               <Form.Control
                 required={true}
                 value={userData.email}
@@ -71,11 +73,11 @@ export default function PageSignUp() {
                 type="email"
                 onChange={handleChange}
                 autoComplete="username"
-                placeholder="Email"
+                placeholder={t('SignUpPage.Form.Email')}
               />
             </Form.Group>
             <Form.Group controlId="userCompany">
-              <Form.Label>Компанія:</Form.Label>
+              <Form.Label>{t('SignUpPage.Form.Company')}:</Form.Label>
               <Form.Control required={true} value={userData.company} name="company" onChange={handleChange} as="select">
                 {CompanyList.map((companyName: string) => {
                   return (
@@ -87,7 +89,7 @@ export default function PageSignUp() {
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="userPassword">
-              <Form.Label>Пароль:</Form.Label>
+              <Form.Label>{t('SignUpPage.Form.Password')}:</Form.Label>
               <Form.Control
                 required={true}
                 value={userData.password}
@@ -96,12 +98,12 @@ export default function PageSignUp() {
                 type="password"
                 onChange={handleChange}
                 autoComplete="current-password"
-                placeholder="Пароль"
+                placeholder={t('SignUpPage.Form.Password')}
               />
             </Form.Group>
             <Form.Group>
               <Button type="submit" className="w-100">
-                Зареєструватись
+                {t('SignUpPage.Form.Submit')}
               </Button>
             </Form.Group>
           </Form>

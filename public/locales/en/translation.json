@@ -1,0 +1,135 @@
+{
+  "PublicNavigation": {
+    "Products": "Products",
+    "Login": "Login",
+    "SignUp": "Sign Up",
+    "Cart": "Cart",
+    "Logout": "Logout",
+    "Profile": "Profile",
+    "AdminPanel": "Admin Panel"
+  },
+  "HomePage": {
+    "AllProducts": "See all products",
+    "Slider": {
+      "Title": "The best offers"
+    }
+  },
+  "LoginPage": {
+    "Title": "Login",
+    "Form": {
+      "Email": "Email",
+      "Password": "Password",
+      "Submit": "Login"
+    },
+    "Notification": {
+      "LoggedIn": {
+        "Title": "Congratulations",
+        "Content": "You have successfully logged in to the site."
+      }
+    }
+  },
+  "SignUpPage": {
+    "Title": "Sign Up",
+    "Form": {
+      "Name": "Name",
+      "Email": "Email",
+      "Company": "Company",
+      "Password": "Password",
+      "Submit": "Sign Up"
+    }
+  },
+  "ProductsPage": {
+    "AddToCardButton": "Add to cart",
+    "Notification": {
+      "ProductAdded": {
+        "Title": "Product added"
+      }
+    }
+  },
+  "User": {
+    "PageHome": {
+      "Title": "Home",
+      "Description": "Personal user page"
+    },
+    "PageProfile": {
+      "Title": "Profile"
+    },
+    "OrdersPage": {
+      "Title": "Orders",
+      "Table": {
+        "Status": "Status",
+        "Date": "Date",
+        "Products": "Products",
+        "Amount": "Amount"
+      },
+      "EmptyOrders": "You have no orders yet."
+    },
+    "OrderPage": {
+      "Title": "Order",
+      "Table": {
+        "Name": "Name",
+        "Price": "Price",
+        "Count": "Count",
+        "Amount": "Amount"
+      },
+      "Information": {
+        "Company": "Company",
+        "Address": "Address",
+        "ProductsCount": "product in the amount of ",
+        "ProductsCount_plural": "products in the amount of ",
+        "ToBePaid": "To be paid",
+        "DeliverTime": "The order will be delivered on Friday at "
+      },
+      "ButtonSubmit": "Confirm order",
+      "Notification": {
+        "CreatedOrder": {
+          "Title": "The order is placed",
+          "Description": "Expect to be delivered to the office on Friday at 16:00."
+        },
+        "ErrorOrder": {
+          "Title": "Error creating order!"
+        }
+      }
+    },
+    "CartPage": {
+      "Title": "Cart",
+      "Table": {
+        "Name": "Name",
+        "Price": "Price",
+        "Count": "Count",
+        "Amount": "Amount"
+      },
+      "EmptyProducts": "You have no products yet.",
+      "DeleteButton": "Delete",
+      "ToOrderButton": "To order"
+    },
+    "Form": {
+      "Name": "Name",
+      "Age": "Age",
+      "Email": "Email",
+      "Password": "Password",
+      "Submit": "Update"
+    }
+  },
+  "MonthNames": {
+    "January": "January",
+    "February": "February",
+    "March": "March",
+    "April": "April",
+    "May": "May",
+    "June": "June",
+    "July": "July",
+    "August": "August",
+    "September": "September",
+    "October": "October",
+    "November": "November",
+    "December": "December"
+  },
+  "Common": {
+    "Currency": "UAH"
+  },
+  "404": {
+    "Title": "404",
+    "Description": "Page Not Found"
+  }
+}

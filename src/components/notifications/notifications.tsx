@@ -23,7 +23,7 @@ export default function Notifications() {
   return (
     <Container>
       {notificationsList.length > 0 &&
-        notificationsList.map(notification => {
+        notificationsList.map((notification) => {
           return (
             <ToastContainer
               key={notification.id}
