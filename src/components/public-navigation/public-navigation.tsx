@@ -15,7 +15,7 @@ function PublicNavigation() {
 
   function userLogout(e: any) {
     e.preventDefault()
-    userService.logoutUser('/users/logout').then(res => {
+    userService.logoutUser().then((res) => {
       if (res.status === 200) {
         dispatch(logoutUser())
         dispatch(updateUser(null))

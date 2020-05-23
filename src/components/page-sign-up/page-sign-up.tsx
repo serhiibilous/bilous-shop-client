@@ -21,11 +21,13 @@ export default function PageSignUp() {
   function handleSubmit(e: any) {
     e.preventDefault()
     userService
-      .createUser('/users', userData)
-      .then(data => {
+      .createUser(userData)
+      .then((data) => {
         if (data.errors) {
-          Object.keys(data.errors).map(error => {
-            return dispatch(addNotification(buildNotification('error', 'Помилка валідації', data.errors[error].message)))
+          Object.keys(data.errors).map((error) => {
+            return dispatch(
+              addNotification(buildNotification('error', 'Помилка валідації', data.errors[error].message)),
+            )
           })
         } else if (data.user) {
           dispatch(updateUser(data.user))
@@ -33,13 +35,11 @@ export default function PageSignUp() {
           dispatch(loginUser(token))
           localStorage.setItem('aut-token', token)
           dispatch(
-            addNotification(buildNotification('success', 'Успішна реєстрація!', 'Тепер ви можете робити замовлення!'))
+            addNotification(buildNotification('success', 'Успішна реєстрація!', 'Тепер ви можете робити замовлення!')),
           )
-        } else {
-          console.log(data)
         }
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
   }
 
   return (
@@ -55,6 +55,7 @@ export default function PageSignUp() {
                 required={true}
                 value={userData.name}
                 name="name"
+                data-testid="name"
                 type="text"
                 onChange={handleChange}
                 placeholder="Ім'я"
@@ -66,6 +67,7 @@ export default function PageSignUp() {
                 required={true}
                 value={userData.email}
                 name="email"
+                data-testid="email"
                 type="email"
                 onChange={handleChange}
                 autoComplete="username"
@@ -90,6 +92,7 @@ export default function PageSignUp() {
                 required={true}
                 value={userData.password}
                 name="password"
+                data-testid="password"
                 type="password"
                 onChange={handleChange}
                 autoComplete="current-password"

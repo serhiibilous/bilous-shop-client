@@ -20,8 +20,8 @@ export default function PageLogin() {
   function handleSubmit(e: any) {
     e.preventDefault()
     userService
-      .loginUser('/users/login', userData)
-      .then(data => {
+      .loginUser(userData)
+      .then((data) => {
         if (!data.error) {
           const token = data.token
           localStorage.setItem('aut-token', token)
@@ -32,7 +32,7 @@ export default function PageLogin() {
           console.log(data.error)
         }
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
   }
 
   return (
@@ -49,6 +49,7 @@ export default function PageLogin() {
                 value={userData.email}
                 name="email"
                 type="email"
+                data-testid="email"
                 onChange={handleChange}
                 autoComplete="username"
                 placeholder="Email"
@@ -61,13 +62,14 @@ export default function PageLogin() {
                 value={userData.password}
                 name="password"
                 type="password"
+                data-testid="password"
                 onChange={handleChange}
                 autoComplete="current-password"
                 placeholder="Пароль"
               />
             </Form.Group>
             <Form.Group>
-              <Button type="submit" className="w-100">
+              <Button type="submit" data-test-id="submit" className="w-100">
                 Увійти
               </Button>
             </Form.Group>

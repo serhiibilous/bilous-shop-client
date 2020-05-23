@@ -17,16 +17,16 @@ export class UserService extends BaseService {
     return await this.updateResource(url, data)
   }
 
-  createUser = async (url: string, data: any) => {
-    return await this.createResource(url, data)
+  createUser = async (data: any) => {
+    return await this.createResource('/users', data)
   }
 
-  loginUser = async (url: string, data: any) => {
-    return await this.createResource(url, data)
+  loginUser = async (data: any) => {
+    return await this.createResource('/users/login', data)
   }
 
-  logoutUser = async (url: string) => {
-    return await this.emptyResource(url)
+  logoutUser = async () => {
+    return await this.emptyResource('/users/logout')
   }
 
   updateUserCart = async (data: any, id: string) => {

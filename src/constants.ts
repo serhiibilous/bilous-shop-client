@@ -1,4 +1,3 @@
-// const companyList = ['RIA', 'WineTime']
 const CompanyList = ['RIA']
 
 // Styles
