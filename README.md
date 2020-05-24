@@ -24,9 +24,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 #### Required:
 
-- Add Translation `i18n`
 - Add common `Image` Component (catch all error variants)
-- Add eslint for a commit and lint for push
 - Create common `styled-components`
 - Add detail description
 

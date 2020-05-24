@@ -1,10 +1,11 @@
 import React from 'react'
 import { act, render, cleanup, waitForElement } from '@testing-library/react'
-import { withMockedRouter, mockedFetchRequest } from '@Main/utils'
+import { withMockedRouter, mockedFetchRequest, mockI18next } from '@Main/utils'
 import { fakeProductList } from './mocks'
 import PageHome from './page-home'
 
 describe('Home component', () => {
+  beforeEach(mockI18next)
   afterEach(cleanup)
 
   test('it shows a list of latest products', async () => {

@@ -1,9 +1,10 @@
 import React from 'react'
 import { act, cleanup, render, waitForElement, fireEvent } from '@testing-library/react'
-import { withMockedRouter } from '@Main/utils'
+import { mockI18next, withMockedRouter } from '@Main/utils'
 import PageSignUp from './page-sign-up'
 
 describe('SignUp component', () => {
+  beforeEach(mockI18next)
   afterEach(cleanup)
 
   test('it shows sign up form and input values', async () => {
@@ -13,7 +14,7 @@ describe('SignUp component', () => {
       const userEmail = 'email@email.com'
       const userPassword = '1234567'
 
-      await waitForElement(() => getByText('Реєстрація'))
+      await waitForElement(() => getByText('Sign Up'))
 
       await fireEvent.change(getByTestId('name'), {
         target: {

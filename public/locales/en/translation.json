@@ -19,7 +19,7 @@
     "Form": {
       "Email": "Email",
       "Password": "Password",
-      "Submit": "Login"
+      "Submit": "Submit"
     },
     "Notification": {
       "LoggedIn": {
@@ -35,7 +35,7 @@
       "Email": "Email",
       "Company": "Company",
       "Password": "Password",
-      "Submit": "Sign Up"
+      "Submit": "Submit"
     },
     "Notifications": {
       "Error": {
