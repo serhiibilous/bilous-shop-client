@@ -1,8 +1,11 @@
 import React from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
+import { useTranslation } from 'react-i18next'
 
 function AdminNavigation() {
+  const { t } = useTranslation()
+
   return (
     <Navbar>
       <Nav defaultActiveKey="/home" className="flex-column">
@@ -11,13 +14,13 @@ function AdminNavigation() {
         </LinkContainer>
         <NavDropdown.Divider />
         <LinkContainer to="/admin/users">
-          <Nav.Link>Користувачі</Nav.Link>
+          <Nav.Link>{t('Admin.UsersPage.Title')}</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/admin/products">
-          <Nav.Link>Продукти</Nav.Link>
+          <Nav.Link>{t('Admin.ProductsPage.Title')}</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/admin/categories">
-          <Nav.Link>Категорії продуктів</Nav.Link>
+          <Nav.Link>{t('Admin.CategoriesPage.Title')}</Nav.Link>
         </LinkContainer>
         <LinkContainer to="/admin/orders">
           <Nav.Link>Замовлення</Nav.Link>

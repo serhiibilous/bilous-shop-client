@@ -10,6 +10,7 @@ import { AppState } from '@Main/store'
 import { Product as ProductType } from '@Main/types'
 import { ProductService, UserService } from '@Main/services'
 import { useTranslation } from 'react-i18next'
+import { formatMoney } from '@Main/utils'
 
 export default function PublicPageProducts() {
   const { t } = useTranslation()
@@ -69,8 +70,8 @@ export default function PublicPageProducts() {
                       )}
                     </Card.Body>
                     <Card.Footer className="text-center">
-                      <span className="font-weight-bold">{price} грн.</span>
-                      {oldPrice && oldPrice !== 0 && <del className="ml-2 text-muted">{oldPrice} грн.</del>}
+                      <span className="font-weight-bold">{formatMoney(price)}</span>
+                      {oldPrice && oldPrice !== 0 && <del className="ml-2 text-muted">{formatMoney(oldPrice)}</del>}
                     </Card.Footer>
                   </Product>
                 </Col>

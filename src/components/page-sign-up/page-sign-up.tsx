@@ -28,7 +28,9 @@ export default function PageSignUp() {
         if (data.errors) {
           Object.keys(data.errors).map((error) => {
             return dispatch(
-              addNotification(buildNotification('error', 'Помилка валідації', data.errors[error].message)),
+              addNotification(
+                buildNotification('error', t('SignUpPage.Notifications.Error.Title'), data.errors[error].message),
+              ),
             )
           })
         } else if (data.user) {
@@ -37,7 +39,13 @@ export default function PageSignUp() {
           dispatch(loginUser(token))
           localStorage.setItem('aut-token', token)
           dispatch(
-            addNotification(buildNotification('success', 'Успішна реєстрація!', 'Тепер ви можете робити замовлення!')),
+            addNotification(
+              buildNotification(
+                'success',
+                t('SignUpPage.Notifications.Success.Title'),
+                t('SignUpPage.Notifications.Success.Description'),
+              ),
+            ),
           )
         }
       })

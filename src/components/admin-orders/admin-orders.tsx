@@ -6,8 +6,10 @@ import { Container, TableContainer } from './admin-orders-components'
 import { AppState } from '@Main/store'
 import { Order } from '@Main/types'
 import { OrderService } from '@Main/services'
+import { useTranslation } from 'react-i18next'
 
 export default function AdminOrders() {
+  const { t } = useTranslation()
   const { token } = useSelector((state: AppState) => state.system)
   const [orders, setOrders] = React.useState<Order[]>([])
   const [totalPrice, setTotalPrice] = React.useState(0)
@@ -31,12 +33,12 @@ export default function AdminOrders() {
   function requestOrders() {
     orderService
       .getAdminOrders(`/admin/orders?startDate=${startDate}&endDate=${endDate}`)
-      .then(data => {
+      .then((data) => {
         if (data.orders) {
           setOrders(data.orders)
         }
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
   }
 
   React.useEffect(() => {
@@ -53,43 +55,52 @@ export default function AdminOrders() {
 
   return (
     <Container id="section-to-print">
-      <h2>Filters</h2>
       <Form onSubmit={handleSearchOrders}>
         <Row className="align-items-end">
           <Col md={4} lg={3}>
             <Form.Group controlId="startDate">
-              <Form.Label>Start date</Form.Label>
-              <Form.Control type="date" placeholder="Start date" value={startDate} onChange={handleChangeStartDate} />
+              <Form.Label>{t('Admin.OrdersPage.Form.StartDate')}</Form.Label>
+              <Form.Control
+                type="date"
+                placeholder={t('Admin.OrdersPage.Form.StartDate')}
+                value={startDate}
+                onChange={handleChangeStartDate}
+              />
             </Form.Group>
           </Col>
           <Col md={4} lg={3}>
             <Form.Group controlId="endDate">
-              <Form.Label>End date</Form.Label>
-              <Form.Control type="date" placeholder="End date" value={endDate} onChange={handleChangeEndDate} />
+              <Form.Label>{t('Admin.OrdersPage.Form.EndDate')}</Form.Label>
+              <Form.Control
+                type="date"
+                placeholder={t('Admin.OrdersPage.Form.EndDate')}
+                value={endDate}
+                onChange={handleChangeEndDate}
+              />
             </Form.Group>
           </Col>
           <Col md={4} lg={3}>
             <Form.Group>
               <Button className="w-100" type="submit">
-                Знайти ордера
+                {t('Admin.OrdersPage.Form.Submit')}
               </Button>
             </Form.Group>
           </Col>
         </Row>
       </Form>
-      <h1>Orders</h1>
+      <h1>{t('Admin.OrdersPage.Title')}</h1>
       {orders.length > 0 ? (
         <TableContainer>
           <Table bordered striped responsive="sm">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Імя</th>
-                <th>Компанія</th>
-                <th>Дата</th>
-                <th>Статус</th>
-                <th>Продукти</th>
-                <th>Сумма</th>
+                <th>{t('Admin.OrdersPage.Table.Name')}</th>
+                <th>{t('Admin.OrdersPage.Table.Company')}</th>
+                <th>{t('Admin.OrdersPage.Table.Date')}</th>
+                <th>{t('Admin.OrdersPage.Table.Status')}</th>
+                <th>{t('Admin.OrdersPage.Table.Products')}</th>
+                <th>{t('Admin.OrdersPage.Table.Amount')}</th>
               </tr>
             </thead>
             <tbody>
@@ -105,16 +116,16 @@ export default function AdminOrders() {
                     </td>
                     <td>
                       <ul>
-                        {order.products.map(product => {
+                        {order.products.map((product) => {
                           return (
                             <li key={product.productId}>
-                              {product.count} шт. {product.name} - {formatMoney(product.count * product.price)} грн.
+                              {product.count}-x - {product.name} - {formatMoney(product.count * product.price)}
                             </li>
                           )
                         })}
                       </ul>
                     </td>
-                    <td>{formatMoney(order.totalPrice)} грн.</td>
+                    <td>{formatMoney(order.totalPrice)}</td>
                   </tr>
                 )
               })}
@@ -122,15 +133,15 @@ export default function AdminOrders() {
             <tfoot>
               <tr>
                 <td colSpan={6} className="text-right font-weight-bold">
-                  Загальна сумма:
+                  {t('Admin.OrdersPage.Table.Total')}
                 </td>
-                <td className="font-weight-bold text-nowrap">{formatMoney(totalPrice)} грн.</td>
+                <td className="font-weight-bold text-nowrap">{formatMoney(totalPrice)}</td>
               </tr>
             </tfoot>
           </Table>
         </TableContainer>
       ) : (
-        <div>Немає ордерів.</div>
+        <div>{t('Admin.OrdersPage.EmptySearch')}</div>
       )}
     </Container>
   )

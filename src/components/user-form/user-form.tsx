@@ -35,11 +35,23 @@ export default function UserForm({ userId }: any) {
         if (data.user) {
           if (!userId) {
             dispatch(updateUser(data))
-            dispatch(addNotification(buildNotification('success', 'Оновлено!', 'Ви успішно оновили свої данні.')))
+            dispatch(
+              addNotification(
+                buildNotification(
+                  'success',
+                  t('User.Notifications.Success.Title'),
+                  t('User.Notifications.Success.Description'),
+                ),
+              ),
+            )
           } else {
             dispatch(
               addNotification(
-                buildNotification('success', 'Оновлено!', `Ви успішно оновили данні юзера: ${data.user.name}.`),
+                buildNotification(
+                  'success',
+                  t('User.Notifications.Success.Title'),
+                  t('User.Notifications.Success.Description', { name: data.user.name }),
+                ),
               ),
             )
           }
@@ -47,11 +59,13 @@ export default function UserForm({ userId }: any) {
         } else if (data.errors) {
           Object.keys(data.errors).map((error) => {
             return dispatch(
-              addNotification(buildNotification('error', 'Помилка валідації', data.errors[error].message)),
+              addNotification(
+                buildNotification('error', t('User.Notifications.ValidationError.Title'), data.errors[error].message),
+              ),
             )
           })
         } else if (data.error) {
-          dispatch(addNotification(buildNotification('error', 'Помилка!', data.error)))
+          dispatch(addNotification(buildNotification('error', t('User.Notifications.CommonError.Title'), data.error)))
         }
       },
       (error) => {

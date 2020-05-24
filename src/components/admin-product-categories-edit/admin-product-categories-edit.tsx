@@ -1,13 +1,17 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import { RouteComponentProps } from 'react-router'
 import { AdminCategoryForm } from '@Main/components'
+import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
-export default function AdminProductCategoriesEdit({ match }: RouteComponentProps<any>) {
+export default function AdminProductCategoriesEdit() {
+  const { t } = useTranslation()
+  const { id } = useParams()
+
   return (
     <Container>
-      <h1>Редагувати категорію</h1>
-      <AdminCategoryForm categoryId={match.params.id} />
+      <h1>{t('Admin.EditCategoryPage.Title')}</h1>
+      <AdminCategoryForm categoryId={id} />
     </Container>
   )
 }

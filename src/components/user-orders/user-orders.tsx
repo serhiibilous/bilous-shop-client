@@ -52,7 +52,7 @@ export default function UserOrders() {
                         {order.products.map((product) => {
                           return (
                             <li key={product.productId}>
-                              {product.count} шт. {product.name} - {formatMoney(product.count * product.price)}
+                              {product.count}-x {product.name} - {formatMoney(product.count * product.price)}
                             </li>
                           )
                         })}

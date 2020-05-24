@@ -36,6 +36,15 @@
       "Company": "Company",
       "Password": "Password",
       "Submit": "Sign Up"
+    },
+    "Notifications": {
+      "Error": {
+        "Title": "Validation Error"
+      },
+      "Success": {
+        "Title": "Successful registration",
+        "Description": "You can now place your order"
+      }
     }
   },
   "ProductsPage": {
@@ -109,6 +118,145 @@
       "Email": "Email",
       "Password": "Password",
       "Submit": "Update"
+    },
+    "Notifications": {
+      "ValidationError": {
+        "Title": "Validation error"
+      },
+      "CommonError": {
+        "Title": "Error"
+      },
+      "Success": {
+        "Title": "Updated",
+        "Description": "You have successfully updated your data",
+        "AdminDescription": "You have successfully updated user data - {{name}}"
+      }
+    }
+  },
+  "Admin": {
+    "HomePage": {
+      "Title": "Admin Home Page",
+      "Description": "Description"
+    },
+    "ProductsPage": {
+      "Title": "Products",
+      "ButtonCreate": "Create new Product",
+      "Table": {
+        "Name": "Name",
+        "Price": "Price",
+        "Actions": "Actions",
+        "EditButton": "Edit",
+        "ViewButton": "View",
+        "DeleteButton": "Delete"
+      }
+    },
+    "CreateProductPage": {
+      "Title": "Create New Product",
+      "LinkBackToProducts": "Back to products"
+    },
+    "EditProductPage": {
+      "Title": "Edit Product",
+      "LinkBackToProducts": "Back to products"
+    },
+    "ViewProductPage": {
+      "Title": "Product",
+      "EditProductButton": "Edit product",
+      "LinkBackToProducts": "Back to products"
+    },
+    "UsersPage": {
+      "Title": "Users",
+      "ButtonCreate": "Create new user",
+      "Table": {
+        "Name": "Name",
+        "Company": "Company",
+        "Actions": "Actions",
+        "EditButton": "Edit",
+        "ViewButton": "View"
+      }
+    },
+    "EditUserPage": {
+      "Title": "User",
+      "LinkBackToUsers": "Back to users"
+    },
+    "CategoriesPage": {
+      "Title": "Product Categories",
+      "CreateButton": "Create new Category",
+      "EditButton": "Edit",
+      "DeleteButton": "Delete"
+    },
+    "CreateCategoryPage": {
+      "Title": "Create New category"
+    },
+    "EditCategoryPage": {
+      "Title": "Edit category"
+    },
+    "OrdersPage": {
+      "Title": "Orders",
+      "Form": {
+        "StartDate": "Start date",
+        "EndDate": "End date",
+        "Submit": "Find Orders"
+      },
+      "Table": {
+        "Name": "Name",
+        "Company": "Company",
+        "Date": "Date",
+        "Status": "Status",
+        "Products": "Products",
+        "Total": "Total",
+        "Amount": "Amount"
+      },
+      "EmptySearch": "You have no orders yet"
+    },
+    "CategoryNotifications": {
+      "SuccessfullyUpdated": {
+        "Title": "Category successfully updated",
+        "Description": "Category - {{name}}"
+      },
+      "SuccessfullyCreated": {
+        "Title": "Category successfully created",
+        "Description": "Category - {{name}}"
+      },
+      "SuccessfullyDeleted": {
+        "Title": "Category successfully deleted",
+        "Description": "Category - {{name}}"
+      },
+      "Error": {
+        "Title": "Validation Error"
+      }
+    },
+    "ProductNotifications": {
+      "Success": {
+        "CreatedTitle": "Product successfully created",
+        "UpdatedTitle": "Product successfully updated",
+        "DeletedTitle": "Product successfully deleted",
+        "Description": "Product - {{name}}"
+      },
+      "Error": {
+        "Title": "Validation Error"
+      }
+    },
+    "Product": {
+      "Name": "Name",
+      "Description": "Description",
+      "Price": "Price",
+      "OldPrice": "OldPrice",
+      "Category": "Category",
+      "Photo": "Photo",
+      "Submit": "Create",
+      "RemovePhotoButton": "Remove Photo",
+      "SubmitUpdate": "Update",
+      "SubmitCreate": "Create"
+    },
+    "Category": {
+      "Name": "Name",
+      "Description": "Description",
+      "Url": "URL",
+      "UrlInfo": "Generated automatically",
+      "Actions": "Actions",
+      "EditButton": "Update",
+      "CreateButton": "Create",
+      "ButtonBackToCategories": "Back to categories"
     }
   },
   "MonthNames": {
@@ -124,6 +272,11 @@
     "October": "October",
     "November": "November",
     "December": "December"
+  },
+  "Orders": {
+    "InProgress": "In Progress",
+    "FinishedAndNotPaid": "In Progress",
+    "Completed": "Completed"
   },
   "Common": {
     "Currency": "UAH"

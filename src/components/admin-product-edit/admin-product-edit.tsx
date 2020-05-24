@@ -1,17 +1,20 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import { Container } from 'react-bootstrap'
 import { AdminProductForm } from '@Main/components'
-import { RouteComponentProps } from 'react-router'
+import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
-interface Props {
-  id: string
-}
+export default function AdminProductEdit() {
+  const { t } = useTranslation()
+  const { id } = useParams()
 
-export default function AdminProductEdit({ match }: RouteComponentProps<Props>) {
   return (
     <Container>
-      <h1>Редагувати новий продукт</h1>
-      <AdminProductForm method="PATCH" productId={match.params.id} />
+      <h1>{t('Admin.EditProductPage.Title')}</h1>
+      <AdminProductForm productId={id} />
+      <hr />
+      <Link to="/admin/products">{t('Admin.EditProductPage.LinkBackToProducts')}</Link>
     </Container>
   )
 }
