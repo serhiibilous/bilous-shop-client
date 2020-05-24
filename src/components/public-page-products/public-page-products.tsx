@@ -28,7 +28,13 @@ export default function PublicPageProducts() {
         if (data.products) {
           dispatch(updateUserCart(data.products))
           dispatch(
-            addNotification(buildNotification('success', t('ProductsPage.Notification.ProductAdded.Title'), name)),
+            addNotification(
+              buildNotification(
+                'success',
+                t('ProductsPage.Notification.ProductAdded.Title'),
+                t('ProductsPage.Notification.ProductAdded.Description', { name: name }),
+              ),
+            ),
           )
         }
       })

@@ -1,4 +1,265 @@
 {
+  "PublicNavigation": {
+    "Products": "Продукти",
+    "Login": "Логін",
+    "SignUp": "Реєстрація",
+    "Cart": "Корзина",
+    "Logout": "Вийти",
+    "Profile": "Профіль",
+    "AdminPanel": "Панель адміністратора"
+  },
+  "HomePage": {
+    "AllProducts": "Переглянути всі продукти",
+    "Slider": {
+      "Title": "Найкращі пропозиції"
+    }
+  },
+  "LoginPage": {
+    "Title": "Логін",
+    "Form": {
+      "Email": "Email",
+      "Password": "Пароль",
+      "Submit": "Увійти"
+    },
+    "Notification": {
+      "LoggedIn": {
+        "Title": "Вітаємо",
+        "Content": "Ви успішно увійшли на сайт"
+      }
+    }
+  },
+  "SignUpPage": {
+    "Title": "Реєстрація",
+    "Form": {
+      "Name": "Ім'я",
+      "Email": "Email",
+      "Company": "Компанія",
+      "Password": "Пароль",
+      "Submit": "Зареєструватись"
+    },
+    "Notifications": {
+      "Error": {
+        "Title": "Помилка валідації"
+      },
+      "Success": {
+        "Title": "Успішна реєстрація",
+        "Description": "Тепер ви можете робити замовлення"
+      }
+    }
+  },
+  "ProductsPage": {
+    "AddToCardButton": "Додати в корзину",
+    "Notification": {
+      "ProductAdded": {
+        "Title": "Продукт додано",
+        "Description": "Продукт - {{name}}"
+      }
+    }
+  },
+  "User": {
+    "PageHome": {
+      "Title": "Домашня сторінка",
+      "Description": "Персональна сторінка юзера"
+    },
+    "PageProfile": {
+      "Title": "Профіль"
+    },
+    "OrdersPage": {
+      "Title": "Замовлення",
+      "Table": {
+        "Status": "Статис",
+        "Date": "Дата",
+        "Products": "Продукти",
+        "Amount": "Сумма"
+      },
+      "EmptyOrders": "У вас поки що немає замовлень"
+    },
+    "OrderPage": {
+      "Title": "Замовлення",
+      "Table": {
+        "Name": "Ім'я",
+        "Price": "Ціна",
+        "Count": "Кількість",
+        "Amount": "Сумма"
+      },
+      "Information": {
+        "Company": "Компанія",
+        "Address": "Адреса",
+        "ProductsCount": "продукт на сумму ",
+        "ProductsCount_plural": "продуктів на сумму ",
+        "ToBePaid": "До сплати ",
+        "DeliverTime": "Замовлення буде доставлено в п'ятницю о "
+      },
+      "ButtonSubmit": "Підтвердити замовлення",
+      "Notification": {
+        "CreatedOrder": {
+          "Title": "Замовлення оформлено",
+          "Description": "Очікуйте на доставку в офіс в п'ятницю о 16:00."
+        },
+        "ErrorOrder": {
+          "Title": "Помилка при створенні замовлення"
+        }
+      }
+    },
+    "CartPage": {
+      "Title": "Корзина",
+      "Table": {
+        "Name": "Ім'я",
+        "Price": "Ціна",
+        "Count": "Кількість",
+        "Amount": "Amount"
+      },
+      "EmptyProducts": "У вас поки що немає продуктів",
+      "DeleteButton": "Видалити",
+      "ToOrderButton": "Оформити замовлення"
+    },
+    "Form": {
+      "Name": "Ім'я",
+      "Age": "Вік",
+      "Email": "Email",
+      "Password": "Пароль",
+      "Submit": "Редагувати"
+    },
+    "Notifications": {
+      "ValidationError": {
+        "Title": "Помилка валідації"
+      },
+      "CommonError": {
+        "Title": "Помилка"
+      },
+      "Success": {
+        "Title": "Оновлено",
+        "Description": "Ви успішно оновили свої данні",
+        "AdminDescription": "Ви успішно оновили данні юзера - {{name}}"
+      }
+    }
+  },
+  "Admin": {
+    "HomePage": {
+      "Title": "Домашня сторінка адміністратора",
+      "Description": "Опис"
+    },
+    "ProductsPage": {
+      "Title": "Продукти",
+      "ButtonCreate": "Створити новий продукт",
+      "Table": {
+        "Name": "Ім'я",
+        "Price": "Ціна",
+        "Actions": "Дії",
+        "EditButton": "Редагувати",
+        "ViewButton": "Переглянути",
+        "DeleteButton": "Видалити"
+      }
+    },
+    "CreateProductPage": {
+      "Title": "Створити новий продукт",
+      "LinkBackToProducts": "Назад до продуктів"
+    },
+    "EditProductPage": {
+      "Title": "Редагувати продукт",
+      "LinkBackToProducts": "Назад до продуктів"
+    },
+    "ViewProductPage": {
+      "Title": "Продукт",
+      "EditProductButton": "Редагувати",
+      "LinkBackToProducts": "Назад до продуктів"
+    },
+    "UsersPage": {
+      "Title": "Користувачі",
+      "ButtonCreate": "Створити новго користувача",
+      "Table": {
+        "Name": "Ім'я",
+        "Company": "Компанія",
+        "Actions": "Дії",
+        "EditButton": "Редагувати",
+        "ViewButton": "Переглянути"
+      }
+    },
+    "EditUserPage": {
+      "Title": "Користувач",
+      "LinkBackToUsers": "Назад до користувачів"
+    },
+    "CategoriesPage": {
+      "Title": "Категорії продуктів",
+      "CreateButton": "Створити нову категорію",
+      "EditButton": "Редагувати",
+      "DeleteButton": "Видалити"
+    },
+    "CreateCategoryPage": {
+      "Title": "Створити нову категорію"
+    },
+    "EditCategoryPage": {
+      "Title": "Редагувати категорію"
+    },
+    "OrdersPage": {
+      "Title": "Замовлення",
+      "Form": {
+        "StartDate": "Стартова дата",
+        "EndDate": "Кінцева дата",
+        "Submit": "Знайти замовлення"
+      },
+      "Table": {
+        "Name": "Ім'я",
+        "Company": "Компанія",
+        "Date": "Дата",
+        "Status": "Статус",
+        "Products": "Продукти",
+        "Total": "Загальна сумма",
+        "Amount": "Сумма"
+      },
+      "EmptySearch": "Поки що у вас не мае замоалень"
+    },
+    "CategoryNotifications": {
+      "SuccessfullyUpdated": {
+        "Title": "Категорія успішно редагована",
+        "Description": "Категорія - {{name}}"
+      },
+      "SuccessfullyCreated": {
+        "Title": "Категорія успішно створена",
+        "Description": "Категорія - {{name}}"
+      },
+      "SuccessfullyDeleted": {
+        "Title": "Категорія успішно видалено",
+        "Description": "Категорія - {{name}}"
+      },
+      "Error": {
+        "Title": "Помилка валідації"
+      }
+    },
+    "ProductNotifications": {
+      "Success": {
+        "CreatedTitle": "Продукт успішно створено",
+        "UpdatedTitle": "Продукт успішно редаговано",
+        "DeletedTitle": "Продукт успішно видалено",
+        "Description": "Продукт - {{name}}"
+      },
+      "Error": {
+        "Title": "Помилка валідації"
+      }
+    },
+    "Product": {
+      "Name": "Ім'я",
+      "Description": "Опис",
+      "Price": "Ціна",
+      "OldPrice": "Стара ціна",
+      "Category": "Категорія",
+      "Photo": "Фото",
+      "Submit": "Створити",
+      "RemovePhotoButton": "Видалити фото",
+      "SubmitUpdate": "Редагувати",
+      "SubmitCreate": "Створити"
+    },
+    "Category": {
+      "Name": "Ім'я",
+      "Description": "Опис",
+      "Url": "URL",
+      "UrlInfo": "генерується автоматично",
+      "Actions": "Дії",
+      "EditButton": "Редагувати",
+      "CreateButton": "Створити",
+      "ButtonBackToCategories": "Назад до категорій"
+    }
+  },
   "MonthNames": {
     "January": "Січня",
     "February": "Лютого",
@@ -13,7 +274,16 @@
     "November": "Листопада",
     "December": "Грудня"
   },
+  "Orders": {
+    "InProgress": "В процесі",
+    "FinishedAndNotPaid": "В процесі",
+    "Completed": "Завершений"
+  },
   "Common": {
     "Currency": "грн."
+  },
+  "404": {
+    "Title": "404",
+    "Description": "Сторінка не знайдена"
   }
 }

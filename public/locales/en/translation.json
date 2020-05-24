@@ -51,7 +51,8 @@
     "AddToCardButton": "Add to cart",
     "Notification": {
       "ProductAdded": {
-        "Title": "Product added"
+        "Title": "Product added",
+        "Description": "Product - {{name}}"
       }
     }
   },
