@@ -8,13 +8,14 @@ import { ImageContainer } from './admin-product-form-components'
 import { AppState } from '@Main/store'
 import { Product, Category } from '@Main/types'
 import { ProductService, CategoryService } from '@Main/services'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
-  method: string
   productId?: string
 }
 
 export default function AdminProductForm({ productId }: Props) {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const { token } = useSelector((state: AppState) => state.system)
   const [loading, setLoading] = React.useState(false)
@@ -29,7 +30,7 @@ export default function AdminProductForm({ productId }: Props) {
   })
   const [imageFile, setImageFile] = React.useState<string>('')
   const [categories, setCategories] = React.useState<Category[]>([])
-  const [buttonName] = React.useState(productId ? 'Редагувати' : 'Створити')
+  const [buttonName] = React.useState(productId ? t('Admin.Product.SubmitUpdate') : t('Admin.Product.SubmitCreate'))
   const [createdProductId, setCreatedProductId] = React.useState<string | null>(null)
   const method: 'PATCH' | 'POST' = productId ? 'PATCH' : 'POST'
   const productService = new ProductService(token!)
@@ -70,37 +71,51 @@ export default function AdminProductForm({ productId }: Props) {
 
     productService
       .createUpdateFormDataResource(url, formData, method)
-      .then(data => {
+      .then((data) => {
         setLoading(false)
         if (data.errors) {
-          Object.keys(data.errors).map(error => {
-            return dispatch(addNotification(buildNotification('error', 'Помилка валідації', data.errors[error].message)))
+          Object.keys(data.errors).map((error) => {
+            return dispatch(
+              addNotification(
+                buildNotification('error', t('Admin.ProductNotifications.Error.Title'), data.errors[error].message),
+              ),
+            )
           })
         } else if (data.product) {
-          const messageText = productId ? 'Редаговано продукт:' : 'Створено продукт:'
-          dispatch(addNotification(buildNotification('success', messageText, data.product.name)))
+          const messageText = productId
+            ? t('Admin.ProductNotifications.Success.UpdatedTitle')
+            : t('Admin.ProductNotifications.Success.CreatedTitle')
+          dispatch(
+            addNotification(
+              buildNotification(
+                'success',
+                messageText,
+                t('Admin.ProductNotifications.Success.Description', { name: data.product.name }),
+              ),
+            ),
+          )
           setCreatedProductId(data.product._id)
         } else {
           console.log(data)
         }
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
   }
 
   React.useEffect(() => {
     categoryService
       .getCategories()
-      .then(data => {
+      .then((data) => {
         if (data.categories) {
           setCategories(data.categories)
         }
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
 
     if (productId) {
       productService
         .getProduct(productId)
-        .then(data => {
+        .then((data) => {
           if (data.product) {
             setProduct({
               _id: '',
@@ -113,7 +128,7 @@ export default function AdminProductForm({ productId }: Props) {
             })
           }
         })
-        .catch(error => console.log(error))
+        .catch((error) => console.log(error))
     }
   }, [])
 
@@ -123,45 +138,51 @@ export default function AdminProductForm({ productId }: Props) {
       {createdProductId ? <Redirect to={`/admin/product/view/${createdProductId}`} /> : null}
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="productName">
-          <Form.Label>Ім'я:</Form.Label>
-          <Form.Control value={product.name} name="name" type="text" onChange={handleChange} placeholder="Ім'я" />
+          <Form.Label>{t('Admin.Product.Name')}:</Form.Label>
+          <Form.Control
+            value={product.name}
+            name="name"
+            type="text"
+            onChange={handleChange}
+            placeholder={t('Admin.Product.Name')}
+          />
         </Form.Group>
         <Form.Group controlId="productDescription">
-          <Form.Label>Опис:</Form.Label>
+          <Form.Label>{t('Admin.Product.Description')}:</Form.Label>
           <Form.Control
             value={product.description}
             name="description"
             type="text"
             onChange={handleChange}
-            placeholder="Опис"
+            placeholder={t('Admin.Product.Description')}
           />
         </Form.Group>
         <Form.Group controlId="productPrice">
-          <Form.Label>Ціна:</Form.Label>
+          <Form.Label>{t('Admin.Product.Price')}:</Form.Label>
           <Form.Control
             required={true}
             value={product.price.toString()}
             name="price"
             type="number"
             onChange={handleChange}
-            placeholder="Ціна"
+            placeholder={t('Admin.Product.Price')}
           />
         </Form.Group>
         <Form.Group controlId="productOldPrice">
-          <Form.Label>Стара ціна:</Form.Label>
+          <Form.Label>{t('Admin.Product.OldPrice')}:</Form.Label>
           <Form.Control
             value={product.oldPrice.toString()}
             name="oldPrice"
             type="number"
             onChange={handleChange}
-            placeholder="Стара ціна"
+            placeholder={t('Admin.Product.OldPrice')}
           />
         </Form.Group>
         <Form.Group controlId="productCategory">
-          <Form.Label>Категорія:</Form.Label>
+          <Form.Label>{t('Admin.Product.Category')}:</Form.Label>
           <Form.Control required={true} value={product.category} name="category" onChange={handleChange} as="select">
             {categories &&
-              categories.map(category => {
+              categories.map((category) => {
                 return (
                   <option key={category._id} value={category.name}>
                     {category.name}
@@ -171,8 +192,8 @@ export default function AdminProductForm({ productId }: Props) {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="productImage">
-          <Form.Label>Фото:</Form.Label>
-          <Form.Control name="image" type="file" onChange={handleChangeImage} placeholder="Фото" />
+          <Form.Label>{t('Admin.Product.Photo')}:</Form.Label>
+          <Form.Control name="image" type="file" onChange={handleChangeImage} placeholder={t('Admin.Product.Photo')} />
         </Form.Group>
         {product.image && product.image.length > 0 && (
           <>
@@ -182,7 +203,7 @@ export default function AdminProductForm({ productId }: Props) {
               </ImageContainer>
             </Form.Group>
             <Form.Group>
-              <button onClick={handleRemoveImage}>Remove Image</button>
+              <button onClick={handleRemoveImage}>{t('Admin.Product.RemovePhotoButton')}</button>
             </Form.Group>
           </>
         )}

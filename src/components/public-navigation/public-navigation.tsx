@@ -6,8 +6,11 @@ import { updateUser, logoutUser } from '@Main/store/system/actions'
 import { AppState } from '@Main/store'
 import { Header, Logo, Nav, NavLink, Cart } from './public-navigation-components'
 import { UserService } from '@Main/services'
+import { useTranslation } from 'react-i18next'
+import { SiteName } from '@Main/constants'
 
 function PublicNavigation() {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const userService = new UserService()
   const { loggedIn, user } = useSelector((state: AppState) => state.system)
@@ -38,13 +41,13 @@ function PublicNavigation() {
     <>
       <Header>
         <div className="d-flex align-items-center">
-          <Logo to="/">Bilous.shop</Logo>
+          <Logo to="/">{SiteName}</Logo>
           <Nav>
-            <NavLink to="/products">Продукти</NavLink>
+            <NavLink to="/products">{t('PublicNavigation.Products')}</NavLink>
             {!loggedIn && (
               <>
-                <NavLink to="/login">Логін</NavLink>
-                <NavLink to="/sign-up">Реєстрація</NavLink>
+                <NavLink to="/login">{t('PublicNavigation.Login')}</NavLink>
+                <NavLink to="/sign-up">{t('PublicNavigation.SignUp')}</NavLink>
               </>
             )}
           </Nav>
@@ -53,21 +56,21 @@ function PublicNavigation() {
           <div className="d-flex align-items-center">
             {productsCount !== 0 && (
               <Cart to="/user/cart">
-                Кошик <Badge variant="light">{productsCount}</Badge>
+                {t('PublicNavigation.Cart')} <Badge variant="light">{productsCount}</Badge>
               </Cart>
             )}
             <DropDown title={user ? user.name : ''} placement="bottom-right">
               {user && user.role === 'admin' ? (
-                <DropDown.Item to="/admin/home">Адмін-панель</DropDown.Item>
+                <DropDown.Item to="/admin/home">{t('PublicNavigation.AdminPanel')}</DropDown.Item>
               ) : (
                 <>
-                  <DropDown.Item to="/user/home">Кабінет</DropDown.Item>
-                  <DropDown.Item to="/user/cart">Кошик</DropDown.Item>
+                  <DropDown.Item to="/user/home">{t('PublicNavigation.Profile')}</DropDown.Item>
+                  <DropDown.Item to="/user/cart">{t('PublicNavigation.Cart')}</DropDown.Item>
                 </>
               )}
               <DropDown.Divider />
               <DropDown.Item to="#" onClick={userLogout}>
-                Вийти
+                {t('PublicNavigation.Logout')}
               </DropDown.Item>
             </DropDown>
           </div>

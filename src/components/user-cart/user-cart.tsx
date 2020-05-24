@@ -8,8 +8,10 @@ import { formatMoney } from '@Main/utils'
 import { AppState } from '@Main/store'
 import { CartProduct } from '@Main/types'
 import { UserService } from '@Main/services'
+import { useTranslation } from 'react-i18next'
 
 function UserCart() {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const { token, user } = useSelector((state: AppState) => state.system)
   const [cart, setCart] = React.useState<CartProduct[] | undefined>(user?.cart)
@@ -21,13 +23,13 @@ function UserCart() {
     if (action === 'REMOVE' && count === 1) return false
     userService
       .updateUserCart({ action: action }, id)
-      .then(data => {
+      .then((data) => {
         if (data.products) {
           setCart(data.products)
           dispatch(updateUserCart(data.products))
         }
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
   }
 
   React.useEffect(() => {
@@ -41,7 +43,7 @@ function UserCart() {
 
   return (
     <Container>
-      <TitlePage>Кошик</TitlePage>
+      <TitlePage>{t('User.CartPage.Title')}</TitlePage>
       {cart && cart.length > 0 ? (
         <Fragment>
           <TableContainer>
@@ -49,10 +51,10 @@ function UserCart() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Назва</th>
-                  <th>Ціна</th>
-                  <th>Кількість</th>
-                  <th>Сумма</th>
+                  <th>{t('User.CartPage.Table.Name')}</th>
+                  <th>{t('User.CartPage.Table.Price')}</th>
+                  <th>{t('User.CartPage.Table.Count')}</th>
+                  <th>{t('User.CartPage.Table.Amount')}</th>
                   <th />
                 </tr>
               </thead>
@@ -63,7 +65,7 @@ function UserCart() {
                       <td>{index + 1}</td>
                       <td>{product.name}</td>
                       <td>
-                        <span className="font-weight-bold">{product.price}</span> грн.
+                        <span className="font-weight-bold">{formatMoney(product.price)}</span>
                       </td>
                       <td>
                         <InputGroup>
@@ -89,14 +91,14 @@ function UserCart() {
                         </InputGroup>
                       </td>
                       <td>
-                        <span className="font-weight-bold">{formatMoney(product.count * product.price)}</span> грн.
+                        <span className="font-weight-bold">{formatMoney(product.count * product.price)}</span>
                       </td>
                       <td>
                         <Button
                           className="w-100"
                           variant="info"
                           onClick={(e: any) => handleChangeCart(e, product.productId, 'DELETE', product.count)}>
-                          Видалити
+                          {t('User.CartPage.DeleteButton')}
                         </Button>
                       </td>
                     </tr>
@@ -106,7 +108,7 @@ function UserCart() {
               <tfoot>
                 <tr>
                   <td colSpan={6} className="text-right font-weight-bold">
-                    Сумма: {formatMoney(sum)} грн.
+                    {t('User.CartPage.Table.Amount')}: {formatMoney(sum)}
                   </td>
                 </tr>
               </tfoot>
@@ -114,12 +116,12 @@ function UserCart() {
           </TableContainer>
           <div className="text-right">
             <Link to="/user/checkout">
-              <Button>Оформити замовлення</Button>
+              <Button>{t('User.CartPage.ToOrderButton')}</Button>
             </Link>
           </div>
         </Fragment>
       ) : (
-        <p>У вас немає товарів.</p>
+        <p>{t('User.CartPage.EmptyProducts')}</p>
       )}
     </Container>
   )

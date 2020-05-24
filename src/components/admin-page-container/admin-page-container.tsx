@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode
 }
 
-function AdminPageContainer({ children }: Props) {
+export default function AdminPageContainer({ children }: Props) {
   return (
     <Container>
       <Navigation>
@@ -16,5 +16,3 @@ function AdminPageContainer({ children }: Props) {
     </Container>
   )
 }
-
-export default AdminPageContainer

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Container, Alert, Button, Carousel } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { NoImage } from '@Main/components'
@@ -6,8 +7,6 @@ import { Product } from '@Main/types'
 import { ProductService } from '@Main/services'
 import {
   Content,
-  LogoContainer,
-  Logo,
   ButtonContainer,
   ImageContainer,
   Image,
@@ -17,6 +16,7 @@ import {
 } from './page-home-components'
 
 export default function PageHome() {
+  const { t } = useTranslation()
   const [latestProducts, setLatestProducts] = useState<Product[]>([])
   const productService = new ProductService()
 
@@ -34,13 +34,8 @@ export default function PageHome() {
   return (
     <Content>
       <Container>
-        <LogoContainer>
-          <Logo />
-        </LogoContainer>
-      </Container>
-      <Container>
         <Alert variant="success">
-          <Alert.Heading>Спеціальна пропозиція для співробітників RIA від WINETIME</Alert.Heading>
+          <Alert.Heading>Як ми працюємо:</Alert.Heading>
           <ul>
             <li>Зробіть замовлення протягом тижня в будь-який зручний час.</li>
             <li>
@@ -55,7 +50,7 @@ export default function PageHome() {
         <ButtonContainer>
           <LinkContainer to="/products">
             <Button variant="success" size="lg" block>
-              Переглянути всі пропозиції
+              {t('HomePage.AllProducts')}
             </Button>
           </LinkContainer>
         </ButtonContainer>
@@ -63,7 +58,7 @@ export default function PageHome() {
       {latestProducts && (
         <Container>
           <hr />
-          <CarouselTitle>Найкращі пропозиції</CarouselTitle>
+          <CarouselTitle>{t('HomePage.Slider.Title')}</CarouselTitle>
           <Carousel nextIcon={<CarouselControlNext />} prevIcon={<CarouselControlPrev />}>
             {latestProducts.map((product: any) => {
               const { _id: id, name, description, image } = product

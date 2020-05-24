@@ -1,22 +1,25 @@
+import i18n from '@Main/i18n'
+
 function formatDateNumbers(number: number) {
   return number < 10 ? '0' + number : number
 }
 
 export function formatDateToDisplay(inputDate: string) {
+  console.log(i18n.language)
   const date = new Date(inputDate)
   const monthNames = [
-    'Січня',
-    'Лютого',
-    'Березня',
-    'Квітня',
-    'Травня',
-    'Червня',
-    'Липня',
-    'Серпня',
-    'Вересня',
-    'Жовтня',
-    'Листопада',
-    'Грудня',
+    i18n.t('MonthNames.January'),
+    i18n.t('MonthNames.February'),
+    i18n.t('MonthNames.March'),
+    i18n.t('MonthNames.April'),
+    i18n.t('MonthNames.May'),
+    i18n.t('MonthNames.June'),
+    i18n.t('MonthNames.July'),
+    i18n.t('MonthNames.August'),
+    i18n.t('MonthNames.September'),
+    i18n.t('MonthNames.October'),
+    i18n.t('MonthNames.November'),
+    i18n.t('MonthNames.December'),
   ]
   const day = date.getDate()
   const monthIndex = date.getMonth()

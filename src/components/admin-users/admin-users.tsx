@@ -6,28 +6,31 @@ import { useSelector } from 'react-redux'
 import { AppState } from '@Main/store'
 import { User } from '@Main/types'
 import { UserService } from '@Main/services'
+import { useTranslation } from 'react-i18next'
 
 export default function AdminUsers() {
+  const { t } = useTranslation()
   const { token } = useSelector((state: AppState) => state.system)
   const userService = new UserService(token!)
   const [users, setUsers] = useState<User[]>([])
 
   React.useEffect(() => {
-    userService.getUsers().then((data: User[]) => {
-      if (data) {
-        setUsers(data)
-      } else {
-        console.log(data)
-      }
-    })
+    userService
+      .getUsers()
+      .then((data: User[]) => {
+        if (data) {
+          setUsers(data)
+        }
+      })
+      .catch((error) => console.log(error))
   }, [])
 
   return (
     <Container>
       <div className="d-flex justify-content-between align-items-center">
-        <Title>Користувачі</Title>
+        <Title>{t('Admin.UsersPage.Title')}</Title>
         <Link to="/admin/user/new" className="btn btn-primary d-none">
-          Створити нового юзера
+          {t('Admin.UsersPage.ButtonCreate')}
         </Link>
       </div>
 
@@ -38,9 +41,9 @@ export default function AdminUsers() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Ім'я</th>
-                  <th>Компанія</th>
-                  <th>Дії</th>
+                  <th>{t('Admin.UsersPage.Table.Name')}</th>
+                  <th>{t('Admin.UsersPage.Table.Company')}</th>
+                  <th>{t('Admin.UsersPage.Table.Actions')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -52,11 +55,11 @@ export default function AdminUsers() {
                       <td>{user.company}</td>
                       <td className="d-flex justify-content-between align-items-center">
                         <Link className="btn btn-info" to={`/admin/user/view/${user._id}`}>
-                          Переглянути
+                          {t('Admin.UsersPage.Table.ViewButton')}
                         </Link>{' '}
                         |
                         <Link className="btn btn-primary" to={`/admin/user/edit/${user._id}`}>
-                          Редагувати
+                          {t('Admin.UsersPage.Table.EditButton')}
                         </Link>
                       </td>
                     </tr>

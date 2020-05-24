@@ -9,8 +9,10 @@ import { AppState } from '@Main/store'
 import { CartProduct } from '@Main/types'
 import { TableContainer, TitlePage } from './user-checkout-components'
 import { OrderService } from '@Main/services'
+import { useTranslation } from 'react-i18next'
 
 export default function UserCheckout() {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const { token, user } = useSelector((state: AppState) => state.system)
   const [products] = React.useState<CartProduct[]>(user!.cart)
@@ -22,20 +24,28 @@ export default function UserCheckout() {
   function handleSubmitOrder() {
     orderService
       .createOrder({ products })
-      .then(data => {
+      .then((data) => {
         if (data.errors) {
-          dispatch(addNotification(buildNotification('error', 'Помилка!', data.errors.status.message)))
+          dispatch(
+            addNotification(
+              buildNotification('error', t('User.OrderPage.Notification.ErrorOrder.Title'), data.errors.status.message),
+            ),
+          )
         } else {
           dispatch(updateUserCart([]))
           dispatch(
             addNotification(
-              buildNotification('success', 'Замовлення оформлено!', "Очікуйте на доставку в офіс в п'ятницю о 16:00.")
-            )
+              buildNotification(
+                'success',
+                t('User.OrderPage.Notification.CreatedOrder.Title'),
+                t('User.OrderPage.Notification.CreatedOrder.Description'),
+              ),
+            ),
           )
           setIsOrderCreated(true)
         }
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
   }
 
   React.useEffect(() => {
@@ -49,7 +59,7 @@ export default function UserCheckout() {
   return (
     <Container>
       {isOrderCreated ? <Redirect to="/user/orders" /> : null}
-      <TitlePage>Замовлення</TitlePage>
+      <TitlePage>{t('User.OrderPage.Title')}</TitlePage>
       {products && (
         <Fragment>
           <TableContainer>
@@ -57,10 +67,10 @@ export default function UserCheckout() {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Назва</th>
-                  <th>Ціна</th>
-                  <th>Кількість</th>
-                  <th>Сумма</th>
+                  <th>{t('User.OrderPage.Table.Name')}</th>
+                  <th>{t('User.OrderPage.Table.Price')}</th>
+                  <th>{t('User.OrderPage.Table.Count')}</th>
+                  <th>{t('User.OrderPage.Table.Amount')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -69,9 +79,9 @@ export default function UserCheckout() {
                     <tr key={product.productId}>
                       <td>{index + 1}</td>
                       <td>{product.name}</td>
-                      <td>{product.price} грн.</td>
+                      <td>{formatMoney(product.price)}</td>
                       <td>{product.count}</td>
-                      <td>{formatMoney(product.count * product.price)} грн.</td>
+                      <td>{formatMoney(product.count * product.price)}</td>
                     </tr>
                   )
                 })}
@@ -80,24 +90,30 @@ export default function UserCheckout() {
           </TableContainer>
           <ListGroup className="mb-3">
             <ListGroup.Item>
-              Компанія: <span className="font-weight-bold">{user!.company}</span>
+              {t('User.OrderPage.Information.Company')}: <span className="font-weight-bold">{user!.company}</span>
             </ListGroup.Item>
-            <ListGroup.Item>Адреса: {address}</ListGroup.Item>
             <ListGroup.Item>
-              {products.length} {products.length > 1 ? 'товари' : 'товар'} на суму{' '}
-              <span className="font-weight-bold">{formatMoney(totalPrice)}</span> грн.
+              {t('User.OrderPage.Information.Address')}: {address}
+            </ListGroup.Item>
+            <ListGroup.Item>
+              {products.length}{' '}
+              {products.length > 1
+                ? t('User.OrderPage.Information.ProductsCount_plural')
+                : t('User.OrderPage.Information.ProductsCount')}
+              <span className="font-weight-bold">{formatMoney(totalPrice)}</span>
             </ListGroup.Item>
             <ListGroup.Item>
               <div>
-                До сплати <span className="font-weight-bold">{formatMoney(totalPrice)}</span> грн.
+                {t('User.OrderPage.Information.ToBePaid')}{' '}
+                <span className="font-weight-bold">{formatMoney(totalPrice)}</span> 
               </div>
               <div>
-                Замовлення буде доставлено в п'ятницю о <span className="font-weight-bold">16:00</span>.
+                {t('User.OrderPage.Information.DeliverTime')} <span className="font-weight-bold">16:00</span>
               </div>
             </ListGroup.Item>
           </ListGroup>
           <div className="text-right">
-            <Button onClick={handleSubmitOrder}>Підтвердити замовлення</Button>
+            <Button onClick={handleSubmitOrder}>{t('User.OrderPage.ButtonSubmit')}</Button>
           </div>
         </Fragment>
       )}

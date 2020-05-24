@@ -8,8 +8,10 @@ import { Category } from '@Main/types'
 import { CategoryService } from '@Main/services'
 import { addNotification } from '@Main/store/notifications/actions'
 import { buildNotification } from '@Main/utils'
+import { useTranslation } from 'react-i18next'
 
-function AdminProductCategories() {
+export default function AdminProductCategories() {
+  const { t } = useTranslation()
   const dispatch = useDispatch()
   const { token } = useSelector((state: AppState) => state.system)
   const [categories, setCategories] = React.useState<Category[]>([])
@@ -19,7 +21,7 @@ function AdminProductCategories() {
     event.preventDefault()
     categoryService
       .deleteCategory(id)
-      .then((data: any) => {
+      .then((data) => {
         if (data.category) {
           const updatedCategories = categories.filter((category: any) => category._id !== data.category._id)
           setCategories(updatedCategories)
@@ -27,50 +29,46 @@ function AdminProductCategories() {
             addNotification(
               buildNotification(
                 'success',
-                'Категорію видалена!',
-                `Ви успішно видалили категорію - ${data.category.name}.`
-              )
-            )
+                t('Admin.CategoryNotifications.SuccessfullyDeleted.Title'),
+                t('Admin.CategoryNotifications.SuccessfullyDeleted.Description', { name: data.category.name }),
+              ),
+            ),
           )
-        } else {
-          console.log('Error with deleting category!')
         }
       })
-      .catch(error => console.log(error))
+      .catch((error) => console.log(error))
   }
 
   React.useEffect(() => {
     categoryService
       .getCategories()
-      .then((data: any) => {
+      .then((data) => {
         if (data.categories) {
           setCategories(data.categories)
-        } else {
-          console.log(data)
         }
       })
-      .catch(err => console.log(err))
+      .catch((err) => console.log(err))
   }, [])
 
   return (
     <Content>
       <Container>
         <div className="d-flex justify-content-between align-items-center">
-          <Title>Категорії продуктів</Title>
+          <Title>{t('Admin.CategoriesPage.Title')}</Title>
           <Link className="btn btn-primary" to="/admin/categories/new">
-            Створити нову категорію
+            {t('Admin.CategoriesPage.CreateButton')}
           </Link>
         </div>
-        {categories && (
+        {categories.length > 0 && (
           <TableContainer>
             <Table bordered striped responsive="sm">
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Назва</th>
-                  <th>Опис</th>
-                  <th>URL</th>
-                  <th>Дії</th>
+                  <th>{t('Admin.Category.Name')}</th>
+                  <th>{t('Admin.Category.Description')}</th>
+                  <th>{t('Admin.Category.Url')}</th>
+                  <th>{t('Admin.Category.Actions')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -85,15 +83,13 @@ function AdminProductCategories() {
                       </td>
                       <td className="d-flex justify-content-between align-items-center">
                         <Link className="btn btn-primary" to={`/admin/categories/edit/${category._id}`}>
-                          Редагувати
-                        </Link>{' '}
-                        |
+                          {t('Admin.CategoriesPage.EditButton')}
+                        </Link>
                         <Link
                           to="#"
                           className="btn btn-danger"
-                          style={{ cursor: 'pointer' }}
-                          onClick={event => handleDeleteCategory(event, category._id!)}>
-                          Видалити
+                          onClick={(event) => handleDeleteCategory(event, category._id!)}>
+                          {t('Admin.CategoriesPage.DeleteButton')}
                         </Link>
                       </td>
                     </tr>
@@ -107,5 +103,3 @@ function AdminProductCategories() {
     </Content>
   )
 }
-
-export default AdminProductCategories
