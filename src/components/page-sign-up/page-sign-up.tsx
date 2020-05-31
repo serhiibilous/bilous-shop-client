@@ -7,6 +7,7 @@ import { CompanyList } from '@Main/constants'
 import { buildNotification } from '@Main/utils'
 import { UserService } from '@Main/services'
 import { useTranslation } from 'react-i18next'
+import { PublicPageContainer } from '@Main/components'
 
 export default function PageSignUp() {
   const { t } = useTranslation()
@@ -53,70 +54,77 @@ export default function PageSignUp() {
   }
 
   return (
-    <Container>
-      <Row className="justify-content-center">
-        <Col sm={6} md={6} lg={4} xl={4}>
-          <br />
-          <h1 className="text-center">{t('SignUpPage.Title')}</h1>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="userName">
-              <Form.Label>{t('SignUpPage.Form.Name')}:</Form.Label>
-              <Form.Control
-                required={true}
-                value={userData.name}
-                name="name"
-                data-testid="name"
-                type="text"
-                onChange={handleChange}
-                placeholder={t('SignUpPage.Form.Name')}
-              />
-            </Form.Group>
-            <Form.Group controlId="userEmail">
-              <Form.Label>{t('SignUpPage.Form.Email')}:</Form.Label>
-              <Form.Control
-                required={true}
-                value={userData.email}
-                name="email"
-                data-testid="email"
-                type="email"
-                onChange={handleChange}
-                autoComplete="username"
-                placeholder={t('SignUpPage.Form.Email')}
-              />
-            </Form.Group>
-            <Form.Group controlId="userCompany">
-              <Form.Label>{t('SignUpPage.Form.Company')}:</Form.Label>
-              <Form.Control required={true} value={userData.company} name="company" onChange={handleChange} as="select">
-                {CompanyList.map((companyName: string) => {
-                  return (
-                    <option key={companyName} value={companyName}>
-                      {companyName}
-                    </option>
-                  )
-                })}
-              </Form.Control>
-            </Form.Group>
-            <Form.Group controlId="userPassword">
-              <Form.Label>{t('SignUpPage.Form.Password')}:</Form.Label>
-              <Form.Control
-                required={true}
-                value={userData.password}
-                name="password"
-                data-testid="password"
-                type="password"
-                onChange={handleChange}
-                autoComplete="current-password"
-                placeholder={t('SignUpPage.Form.Password')}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Button type="submit" className="w-100">
-                {t('SignUpPage.Form.Submit')}
-              </Button>
-            </Form.Group>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+    <PublicPageContainer>
+      <Container>
+        <Row className="justify-content-center">
+          <Col sm={6} md={6} lg={4} xl={4}>
+            <br />
+            <h1 className="text-center">{t('SignUpPage.Title')}</h1>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="userName">
+                <Form.Label>{t('SignUpPage.Form.Name')}:</Form.Label>
+                <Form.Control
+                  required={true}
+                  value={userData.name}
+                  name="name"
+                  data-testid="name"
+                  type="text"
+                  onChange={handleChange}
+                  placeholder={t('SignUpPage.Form.Name')}
+                />
+              </Form.Group>
+              <Form.Group controlId="userEmail">
+                <Form.Label>{t('SignUpPage.Form.Email')}:</Form.Label>
+                <Form.Control
+                  required={true}
+                  value={userData.email}
+                  name="email"
+                  data-testid="email"
+                  type="email"
+                  onChange={handleChange}
+                  autoComplete="username"
+                  placeholder={t('SignUpPage.Form.Email')}
+                />
+              </Form.Group>
+              <Form.Group controlId="userCompany">
+                <Form.Label>{t('SignUpPage.Form.Company')}:</Form.Label>
+                <Form.Control
+                  required={true}
+                  value={userData.company}
+                  name="company"
+                  onChange={handleChange}
+                  as="select">
+                  {CompanyList.map((companyName: string) => {
+                    return (
+                      <option key={companyName} value={companyName}>
+                        {companyName}
+                      </option>
+                    )
+                  })}
+                </Form.Control>
+              </Form.Group>
+              <Form.Group controlId="userPassword">
+                <Form.Label>{t('SignUpPage.Form.Password')}:</Form.Label>
+                <Form.Control
+                  required={true}
+                  value={userData.password}
+                  name="password"
+                  data-testid="password"
+                  type="password"
+                  onChange={handleChange}
+                  autoComplete="current-password"
+                  placeholder={t('SignUpPage.Form.Password')}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Button type="submit" className="w-100">
+                  {t('SignUpPage.Form.Submit')}
+                </Button>
+              </Form.Group>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </PublicPageContainer>
   )
 }

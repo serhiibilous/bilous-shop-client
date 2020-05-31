@@ -1,10 +1,11 @@
 import styled from 'styled-components'
+import { headerHeight } from '@Main/constants'
 
 export const Container = styled.div`
   background: #ccc;
   display: flex;
   position: absolute;
-  top: 56px;
+  top: ${headerHeight}px;
   left: 0;
   right: 0;
   bottom: 0;

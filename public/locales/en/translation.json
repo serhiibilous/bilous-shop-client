@@ -144,6 +144,7 @@
       "ButtonCreate": "Create new Product",
       "Table": {
         "Name": "Name",
+        "Category": "Category",
         "Price": "Price",
         "Actions": "Actions",
         "EditButton": "Edit",

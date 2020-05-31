@@ -15,7 +15,7 @@ import {
   AdminProductCategoriesNew,
   AdminProductCategoriesEdit,
   PublicPageProducts,
-  PublicNavigation,
+  Header,
   PageContainer,
   UserCart,
   PageLogin,
@@ -35,6 +35,7 @@ import {
   AdminUserEdit,
   AdminUsers,
   Loader,
+  GlobalStyle,
 } from '@Main/components'
 
 export default function App() {
@@ -44,14 +45,13 @@ export default function App() {
         <Router>
           <Authorization>
             <PageContainer>
-              <PublicNavigation />
+              <GlobalStyle />
+              <Header />
               <Notifications />
-
               <Switch>
-                <Route path="/" exact component={() => <PageHome />} />
+                <Route path="/" exact component={PageHome} />
                 <PublicRoute path="/login" exact component={PageLogin} />
                 <PublicRoute path="/sign-up" exact component={PageSignUp} />
-                {/*<Route exact path="/product/:id" component={} />*/}
                 <Route exact path="/products" component={PublicPageProducts} />
 
                 <Route path="/user">

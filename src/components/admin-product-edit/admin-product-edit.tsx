@@ -4,6 +4,7 @@ import { Container } from 'react-bootstrap'
 import { AdminProductForm } from '@Main/components'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { PageTitle } from '@Main/styles/admin'
 
 export default function AdminProductEdit() {
   const { t } = useTranslation()
@@ -11,7 +12,7 @@ export default function AdminProductEdit() {
 
   return (
     <Container>
-      <h1>{t('Admin.EditProductPage.Title')}</h1>
+      <PageTitle>{t('Admin.EditProductPage.Title')}</PageTitle>
       <AdminProductForm productId={id} />
       <hr />
       <Link to="/admin/products">{t('Admin.EditProductPage.LinkBackToProducts')}</Link>

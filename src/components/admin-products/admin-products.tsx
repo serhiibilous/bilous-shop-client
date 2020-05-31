@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Container, Table } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { addNotification } from '@Main/store/notifications/actions'
 import { buildNotification } from '@Main/utils'
-import { TableContainer, Content, Title } from './admin-products-components'
 import { AppState } from '@Main/store'
 import { Product } from '@Main/types'
 import { ProductService } from '@Main/services'
 import { useTranslation } from 'react-i18next'
+import { PageTitle, TableContainer } from '@Main/styles/admin'
 
 export default function AdminProducts() {
   const { t } = useTranslation()
@@ -50,16 +50,15 @@ export default function AdminProducts() {
   }, [])
 
   return (
-    <Content>
+    <>
       <Container>
         <div className="d-flex justify-content-between align-items-center">
-          <Title>{t('Admin.ProductsPage.Title')}</Title>
+          <PageTitle>{t('Admin.ProductsPage.Title')}</PageTitle>
           <Link to="/admin/product/new" className="btn btn-primary">
             {t('Admin.ProductsPage.ButtonCreate')}
           </Link>
         </div>
-
-        <Fragment>
+        <>
           {products.length > 0 && (
             <TableContainer>
               <Table bordered striped responsive="sm">
@@ -67,6 +66,7 @@ export default function AdminProducts() {
                   <tr>
                     <th>#</th>
                     <th>{t('Admin.ProductsPage.Table.Name')}</th>
+                    <th>{t('Admin.ProductsPage.Table.Category')}</th>
                     <th>{t('Admin.ProductsPage.Table.Price')}</th>
                     <th>{t('Admin.ProductsPage.Table.Actions')}</th>
                   </tr>
@@ -77,6 +77,7 @@ export default function AdminProducts() {
                       <tr key={product._id}>
                         <td>{index + 1}</td>
                         <td>{product.name}</td>
+                        <td>{product.category.name}</td>
                         <td>{product.price ? product.price : product.oldPrice} грн.</td>
                         <td className="d-flex justify-content-between">
                           <Link className="btn btn-info" to={`/admin/product/view/${product._id}`}>
@@ -96,8 +97,8 @@ export default function AdminProducts() {
               </Table>
             </TableContainer>
           )}
-        </Fragment>
+        </>
       </Container>
-    </Content>
+    </>
   )
 }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Container, Alert, Button, Carousel } from 'react-bootstrap'
-import { LinkContainer } from 'react-router-bootstrap'
-import { ImageContainer as Image } from '@Main/components'
+import { Container, Button, Carousel } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { ImageContainer as Image, PublicPageContainer } from '@Main/components'
 import { Product } from '@Main/types'
 import { ProductService } from '@Main/services'
 import {
@@ -31,51 +31,39 @@ export default function PageHome() {
   }, [])
 
   return (
-    <Content>
-      <Container>
-        <Alert variant="success">
-          <Alert.Heading>Як ми працюємо:</Alert.Heading>
-          <ul>
-            <li>Зробіть замовлення протягом тижня в будь-який зручний час.</li>
-            <li>
-              Отримайте доставку в офіс в п'ятницю о 16:00.
-              <br />
-              <em>(останнє замовлення приймається до 14:00 п'ятниці)</em>
-            </li>
-          </ul>
-        </Alert>
-      </Container>
+    <PublicPageContainer>
+      <Content>
+        {latestProducts && (
+          <Container>
+            <CarouselTitle>{t('HomePage.Slider.Title')}</CarouselTitle>
+            <Carousel nextIcon={<CarouselControlNext />} prevIcon={<CarouselControlPrev />}>
+              {latestProducts.map((product: any) => {
+                const { _id: id, name, description, image } = product
+                return (
+                  <Carousel.Item key={id}>
+                    <ImageContainer>
+                      <Image url={image} name={name} />
+                    </ImageContainer>
+                    <Carousel.Caption>
+                      <h3>{name}</h3>
+                      <p>{description}</p>
+                    </Carousel.Caption>
+                  </Carousel.Item>
+                )
+              })}
+            </Carousel>
+          </Container>
+        )}
+      </Content>
       <Container>
         <ButtonContainer>
-          <LinkContainer to="/products">
+          <Link to="/products">
             <Button variant="success" size="lg" block>
               {t('HomePage.AllProducts')}
             </Button>
-          </LinkContainer>
+          </Link>
         </ButtonContainer>
       </Container>
-      {latestProducts && (
-        <Container>
-          <hr />
-          <CarouselTitle>{t('HomePage.Slider.Title')}</CarouselTitle>
-          <Carousel nextIcon={<CarouselControlNext />} prevIcon={<CarouselControlPrev />}>
-            {latestProducts.map((product: any) => {
-              const { _id: id, name, description, image } = product
-              return (
-                <Carousel.Item key={id}>
-                  <ImageContainer>
-                    <Image url={image} name={name} />
-                  </ImageContainer>
-                  <Carousel.Caption>
-                    <h3>{name}</h3>
-                    <p>{description}</p>
-                  </Carousel.Caption>
-                </Carousel.Item>
-              )
-            })}
-          </Carousel>
-        </Container>
-      )}
-    </Content>
+    </PublicPageContainer>
   )
 }

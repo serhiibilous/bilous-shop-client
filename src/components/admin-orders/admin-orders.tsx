@@ -1,12 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Button, Row, Col, Form, Table } from 'react-bootstrap'
+import { Button, Row, Col, Form, Table, Container } from 'react-bootstrap'
 import { RenderOrderStatus, formatDateToDisplay, formatDateToCalendar, formatMoney } from '@Main/utils'
-import { Container, TableContainer } from './admin-orders-components'
 import { AppState } from '@Main/store'
 import { Order } from '@Main/types'
 import { OrderService } from '@Main/services'
 import { useTranslation } from 'react-i18next'
+import { TableContainer, PageTitle, PageDescription } from '@Main/styles/admin'
 
 export default function AdminOrders() {
   const { t } = useTranslation()
@@ -88,7 +88,7 @@ export default function AdminOrders() {
           </Col>
         </Row>
       </Form>
-      <h1>{t('Admin.OrdersPage.Title')}</h1>
+      <PageTitle>{t('Admin.OrdersPage.Title')}</PageTitle>
       {orders.length > 0 ? (
         <TableContainer>
           <Table bordered striped responsive="sm">
@@ -141,7 +141,7 @@ export default function AdminOrders() {
           </Table>
         </TableContainer>
       ) : (
-        <div>{t('Admin.OrdersPage.EmptySearch')}</div>
+        <PageDescription>{t('Admin.OrdersPage.EmptySearch')}</PageDescription>
       )}
     </Container>
   )

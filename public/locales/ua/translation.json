@@ -144,6 +144,7 @@
       "ButtonCreate": "Створити новий продукт",
       "Table": {
         "Name": "Ім'я",
+        "Category": "Категорія",
         "Price": "Ціна",
         "Actions": "Дії",
         "EditButton": "Редагувати",

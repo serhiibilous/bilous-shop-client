@@ -6,6 +6,7 @@ import { addNotification } from '@Main/store/notifications/actions'
 import { buildNotification } from '@Main/utils'
 import { UserService } from '@Main/services'
 import { useTranslation } from 'react-i18next'
+import { PublicPageContainer } from '@Main/components'
 
 export default function PageLogin() {
   const { t } = useTranslation()
@@ -44,46 +45,48 @@ export default function PageLogin() {
   }
 
   return (
-    <Container>
-      <Row className="justify-content-center">
-        <Col sm={6} md={6} lg={4} xl={4}>
-          <br />
-          <h1 className="text-center">{t('LoginPage.Title')}</h1>
-          <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="userEmail">
-              <Form.Label>{t('LoginPage.Form.Email')}:</Form.Label>
-              <Form.Control
-                required={true}
-                value={userData.email}
-                name="email"
-                type="email"
-                data-testid="email"
-                onChange={handleChange}
-                autoComplete="username"
-                placeholder={t('LoginPage.Form.Email')}
-              />
-            </Form.Group>
-            <Form.Group controlId="userPassword">
-              <Form.Label>{t('LoginPage.Form.Password')}:</Form.Label>
-              <Form.Control
-                required={true}
-                value={userData.password}
-                name="password"
-                type="password"
-                data-testid="password"
-                onChange={handleChange}
-                autoComplete="current-password"
-                placeholder={t('LoginPage.Form.Password')}
-              />
-            </Form.Group>
-            <Form.Group>
-              <Button type="submit" data-test-id="submit" className="w-100">
-                {t('LoginPage.Form.Submit')}
-              </Button>
-            </Form.Group>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+    <PublicPageContainer>
+      <Container>
+        <Row className="justify-content-center">
+          <Col sm={6} md={6} lg={4} xl={4}>
+            <br />
+            <h1 className="text-center">{t('LoginPage.Title')}</h1>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="userEmail">
+                <Form.Label>{t('LoginPage.Form.Email')}:</Form.Label>
+                <Form.Control
+                  required={true}
+                  value={userData.email}
+                  name="email"
+                  type="email"
+                  data-testid="email"
+                  onChange={handleChange}
+                  autoComplete="username"
+                  placeholder={t('LoginPage.Form.Email')}
+                />
+              </Form.Group>
+              <Form.Group controlId="userPassword">
+                <Form.Label>{t('LoginPage.Form.Password')}:</Form.Label>
+                <Form.Control
+                  required={true}
+                  value={userData.password}
+                  name="password"
+                  type="password"
+                  data-testid="password"
+                  onChange={handleChange}
+                  autoComplete="current-password"
+                  placeholder={t('LoginPage.Form.Password')}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Button type="submit" data-test-id="submit" className="w-100">
+                  {t('LoginPage.Form.Submit')}
+                </Button>
+              </Form.Group>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+    </PublicPageContainer>
   )
 }

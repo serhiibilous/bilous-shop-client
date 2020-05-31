@@ -2,13 +2,13 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Container, Table } from 'react-bootstrap'
-import { Content, Title, TableContainer } from './admin-product-categories-components'
 import { AppState } from '@Main/store'
 import { Category } from '@Main/types'
 import { CategoryService } from '@Main/services'
 import { addNotification } from '@Main/store/notifications/actions'
 import { buildNotification } from '@Main/utils'
 import { useTranslation } from 'react-i18next'
+import { PageTitle, TableContainer } from '@Main/styles/admin'
 
 export default function AdminProductCategories() {
   const { t } = useTranslation()
@@ -51,10 +51,10 @@ export default function AdminProductCategories() {
   }, [])
 
   return (
-    <Content>
+    <>
       <Container>
         <div className="d-flex justify-content-between align-items-center">
-          <Title>{t('Admin.CategoriesPage.Title')}</Title>
+          <PageTitle>{t('Admin.CategoriesPage.Title')}</PageTitle>
           <Link className="btn btn-primary" to="/admin/categories/new">
             {t('Admin.CategoriesPage.CreateButton')}
           </Link>
@@ -100,6 +100,6 @@ export default function AdminProductCategories() {
           </TableContainer>
         )}
       </Container>
-    </Content>
+    </>
   )
 }

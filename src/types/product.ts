@@ -4,6 +4,14 @@ export interface Product {
   description: string
   price: number
   oldPrice: number
-  category: string
   image: string
+  category: {
+    name: string
+    id: string
+  }
+}
+
+export interface GroupedProduct {
+  _id: string
+  products: Product[]
 }

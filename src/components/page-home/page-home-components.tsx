@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import React from 'react'
 
 export const Content = styled.div`
-  margin: 30px 0;
+  padding: 30px 0;
 `
 
 export const ButtonContainer = styled.div`

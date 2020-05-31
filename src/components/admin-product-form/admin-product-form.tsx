@@ -25,7 +25,7 @@ export default function AdminProductForm({ productId }: Props) {
     description: 'description',
     price: 10,
     oldPrice: 20,
-    category: 'Beer',
+    category: { name: 'Beer', id: '' },
     image: '',
   })
   const [imageFile, setImageFile] = React.useState<string>('')
@@ -66,7 +66,7 @@ export default function AdminProductForm({ productId }: Props) {
     formData.append('description', product.description)
     formData.append('price', product.price.toString())
     formData.append('oldPrice', product.oldPrice.toString())
-    formData.append('category', product.category)
+    formData.append('category', product.category.name)
     formData.append('image', imageFile ? imageFile : product.image)
 
     productService
@@ -123,7 +123,7 @@ export default function AdminProductForm({ productId }: Props) {
               description: data.product.description,
               price: data.product.price,
               oldPrice: data.product.oldPrice ? data.product.oldPrice : 0,
-              category: data.product.category.name,
+              category: data.product.category,
               image: data.product.image,
             })
           }
@@ -180,7 +180,12 @@ export default function AdminProductForm({ productId }: Props) {
         </Form.Group>
         <Form.Group controlId="productCategory">
           <Form.Label>{t('Admin.Product.Category')}:</Form.Label>
-          <Form.Control required={true} value={product.category} name="category" onChange={handleChange} as="select">
+          <Form.Control
+            required={true}
+            value={product.category.name}
+            name="category"
+            onChange={handleChange}
+            as="select">
             {categories &&
               categories.map((category) => {
                 return (

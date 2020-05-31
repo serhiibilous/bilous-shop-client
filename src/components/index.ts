@@ -1,15 +1,17 @@
 export { default as App } from './app'
+export { default as GlobalStyle } from './global-style'
 
 export { default as PageHome } from './page-home'
 export { default as PageNotFound } from './page-not-found'
 export { default as PageLogin } from './page-login'
 export { default as PageSignUp } from './page-sign-up'
 
-export { default as PublicNavigation } from './public-navigation'
+export { default as Header } from './header'
 export { default as Notifications } from './notifications'
 export { default as PublicPageProducts } from './public-page-products'
 export { default as PageContainer } from './page-container'
 export { default as Footer } from './footer'
+export { default as PublicPageContainer } from './public-page-container'
 
 export { default as AdminPageHome } from './admin-page-home'
 export { default as AdminPageContainer } from './admin-page-container'

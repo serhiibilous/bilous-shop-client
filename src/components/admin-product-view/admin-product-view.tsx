@@ -3,12 +3,13 @@ import { Container, Image } from 'react-bootstrap'
 import { useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import { ListGroup } from 'react-bootstrap'
-import { ImageContainer, Content, Title } from './admin-product-view-components'
+import { ImageContainer } from './admin-product-view-components'
 import { AppState } from '@Main/store'
 import { Product } from '@Main/types'
 import { ProductService } from '@Main/services'
 import { useTranslation } from 'react-i18next'
 import { formatMoney } from '@Main/utils'
+import { PageTitle } from '@Main/styles/admin'
 
 export default function AdminProductView() {
   const { id } = useParams()
@@ -37,9 +38,9 @@ export default function AdminProductView() {
   }, [])
 
   return (
-    <Content>
+    <>
       <Container>
-        <Title>{t('Admin.ViewProductPage.Title')}</Title>
+        <PageTitle>{t('Admin.ViewProductPage.Title')}</PageTitle>
         {product && (
           <>
             <ListGroup>
@@ -80,6 +81,6 @@ export default function AdminProductView() {
         <hr />
         <Link to="/admin/products">{t('Admin.ViewProductPage.LinkBackToProducts')}</Link>
       </Container>
-    </Content>
+    </>
   )
 }

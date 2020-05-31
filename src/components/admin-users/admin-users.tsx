@@ -1,12 +1,12 @@
 import React, { Fragment, useState } from 'react'
 import { Container, Table } from 'react-bootstrap'
-import { TableContainer, Title } from '@Main/components/admin-products/admin-products-components'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { AppState } from '@Main/store'
 import { User } from '@Main/types'
 import { UserService } from '@Main/services'
 import { useTranslation } from 'react-i18next'
+import { PageTitle, TableContainer } from '@Main/styles/admin'
 
 export default function AdminUsers() {
   const { t } = useTranslation()
@@ -28,7 +28,7 @@ export default function AdminUsers() {
   return (
     <Container>
       <div className="d-flex justify-content-between align-items-center">
-        <Title>{t('Admin.UsersPage.Title')}</Title>
+        <PageTitle>{t('Admin.UsersPage.Title')}</PageTitle>
         <Link to="/admin/user/new" className="btn btn-primary d-none">
           {t('Admin.UsersPage.ButtonCreate')}
         </Link>

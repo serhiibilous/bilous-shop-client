@@ -1,14 +1,15 @@
 import styled from 'styled-components'
 import { headerHeight } from '@Main/constants'
 import { Link } from 'react-router-dom'
+import { primaryDark, white, secondaryLight } from '@Main/styles/colors'
 
-export const Header = styled.div`
+export const Container = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   height: ${headerHeight}px;
-  background: #343a40;
+  background: ${primaryDark};
   z-index: 10;
   display: flex;
   align-items: center;
@@ -16,36 +17,28 @@ export const Header = styled.div`
   padding: 10px 15px 12px;
 `
 
-export const Logo = styled(Link)`
-  text-decoration: none;
-  color: #fff;
-  font-size: 20px;
+const HeaderLink = styled(Link)`
+  color: ${white};
 
   &:hover {
-    color: #f8f9fa;
+    color: ${secondaryLight};
   }
+`
+
+export const Logo = styled(HeaderLink)`
+  font-size: 20px;
 `
 
 export const Nav = styled.nav`
   margin: 3px 0 0 20px;
 `
 
-export const NavLink = styled(Link)`
-  color: #fff;
+export const NavLink = styled(HeaderLink)`
   margin: 0 10px;
-
-  &:hover {
-    color: #f8f9fa;
-  }
 `
 
-export const Cart = styled(Link)`
-  color: #fff;
+export const Cart = styled(HeaderLink)`
   margin-right: 30px;
-
-  &:hover {
-    color: #f8f9fa;
-  }
 
   .badge {
     margin-left: 5px;

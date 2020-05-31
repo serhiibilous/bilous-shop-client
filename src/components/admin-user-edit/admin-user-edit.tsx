@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap'
 import { UserForm } from '@Main/components'
 import { useTranslation } from 'react-i18next'
 import { Link, useParams } from 'react-router-dom'
+import { PageTitle } from '@Main/styles/admin'
 
 export default function AdminUserEdit() {
   const { t } = useTranslation()
@@ -10,7 +11,7 @@ export default function AdminUserEdit() {
 
   return (
     <Container>
-      <h1>{t('Admin.EditUserPage.Title')}</h1>
+      <PageTitle>{t('Admin.EditUserPage.Title')}</PageTitle>
       <UserForm userId={id} />
       <hr />
       <Link to="/admin/users">{t('Admin.EditUserPage.LinkBackToUsers')}</Link>
