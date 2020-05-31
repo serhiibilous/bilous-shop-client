@@ -2,14 +2,13 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Container, Alert, Button, Carousel } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import { NoImage } from '@Main/components'
+import { ImageContainer as Image } from '@Main/components'
 import { Product } from '@Main/types'
 import { ProductService } from '@Main/services'
 import {
   Content,
   ButtonContainer,
   ImageContainer,
-  Image,
   CarouselTitle,
   CarouselControlNext,
   CarouselControlPrev,
@@ -64,7 +63,9 @@ export default function PageHome() {
               const { _id: id, name, description, image } = product
               return (
                 <Carousel.Item key={id}>
-                  <ImageContainer>{image ? <Image src={image} alt={name} /> : <NoImage />}</ImageContainer>
+                  <ImageContainer>
+                    <Image url={image} name={name} />
+                  </ImageContainer>
                   <Carousel.Caption>
                     <h3>{name}</h3>
                     <p>{description}</p>

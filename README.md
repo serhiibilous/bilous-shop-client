@@ -20,11 +20,16 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+
+### Analyze
+`npm run build`<br />
+`npm run analyze`
+
+
 ## TODO
 
 #### Required:
 
-- Add common `Image` Component (catch all error variants)
 - Create common `styled-components`
 - Add detail description
 

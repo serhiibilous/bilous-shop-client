@@ -2,10 +2,10 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Container, Card, Button, Row, Col } from 'react-bootstrap'
 import { buildNotification } from '@Main/utils'
-import { Product, Image, ImageContainer, Content } from './public-page-products-components'
+import { Product, ImageContainer, Content } from './public-page-products-components'
 import { addNotification } from '@Main/store/notifications/actions'
 import { updateUserCart } from '@Main/store/system/actions'
-import { NoImage } from '@Main/components'
+import { ImageContainer as Image } from '@Main/components'
 import { AppState } from '@Main/store'
 import { Product as ProductType } from '@Main/types'
 import { ProductService, UserService } from '@Main/services'
@@ -62,7 +62,9 @@ export default function PublicPageProducts() {
               return (
                 <Col xs={12} sm={6} md={6} lg={4} xl={3} key={id}>
                   <Product>
-                    <ImageContainer>{image ? <Image src={image} alt={name} /> : <NoImage />}</ImageContainer>
+                    <ImageContainer>
+                      <Image url={image} name={name} />
+                    </ImageContainer>
                     <Card.Body>
                       <Card.Title title={name}>{name}</Card.Title>
                       <Card.Text>{description}</Card.Text>
